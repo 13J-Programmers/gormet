@@ -1,2 +1,7 @@
 # gormet
-koreisai street food system(draft)
+屋台の注文受付システム (とLINEBOTのバックエンド)
+
+- 注文管理
+- 整理券番号の発行
+  - lineから問い合わせ可能なapiを含む
+- データの記録
