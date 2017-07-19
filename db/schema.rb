@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170719063914) do
 
-  create_table "menus", force: :cascade do |t|
+  create_table "foods", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "amount", null: false
+    t.integer "sold_amount", null: false
     t.integer "stock", null: false
     t.boolean "with_cheese", default: false
     t.integer "order_id"
