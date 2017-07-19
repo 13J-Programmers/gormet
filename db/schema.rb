@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170719063914) do
     t.integer "amount", null: false
     t.integer "stock", null: false
     t.boolean "with_cheese", default: false
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
