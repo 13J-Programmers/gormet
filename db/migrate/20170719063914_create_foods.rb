@@ -1,8 +1,8 @@
-class CreateMenus < ActiveRecord::Migration[5.1]
+class CreateFoods < ActiveRecord::Migration[5.1]
   def change
-    create_table :menus do |t|
+    create_table :foods do |t|
       t.string :name, null: false
-      t.integer :amount, null: false
+      t.integer :sold_amount, null: false
       t.integer :stock, null: false
       t.boolean :with_cheese, default: false
       t.integer :order_id
