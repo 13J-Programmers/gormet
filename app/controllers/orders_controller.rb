@@ -12,11 +12,6 @@ class OrdersController < ApplicationController
   def show
   end
 
-  # GET /orders/new
-  def new
-    @order = Order.new
-  end
-
   # GET /orders/1/edit
   def edit
   end
