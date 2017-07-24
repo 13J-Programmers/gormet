@@ -13,17 +13,17 @@
 ActiveRecord::Schema.define(version: 20170723234620) do
 
   create_table "foods", force: :cascade do |t|
-    t.integer "menu_id"
-    t.integer "order_id"
-    t.boolean "with_cheese"
+    t.integer "menu_id", null: false
+    t.integer "order_id", null: false
+    t.boolean "with_cheese", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "menus", force: :cascade do |t|
-    t.string "name"
-    t.integer "price"
-    t.integer "stock"
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.integer "stock", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
