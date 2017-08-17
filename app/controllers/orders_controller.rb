@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user
   before_action :set_order, only: [:show, :update, :destroy]
 
   def index
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     end
 
     if @order.save
-      render json: @order, include: include_list
+      render json: @order
     else
       render json: { errors: @order.errors.full_messages }
     end
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      render json: @order, include: include_list
+      render json: @order
     else
       render json: { errors: @order.errors.full_messages }
     end
@@ -50,9 +50,5 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:offer_at, foods_attributes: [:menu_id, :amount]).merge({order_at: Time.zone.now})
-    end
-
-    def include_list
-      %w(foods foods.menu)
     end
 end
