@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  post 'user_token' => 'user_token#create'
   root 'application#index'
+  devise_for :users
 
   resources :foods
   resources :users
