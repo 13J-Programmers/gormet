@@ -1,5 +1,5 @@
 class DataController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user!
 
   def show
     flavors = Menu.all.map do |menu|
