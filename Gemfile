@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'webpacker', github: 'rails/webpacker'
 
+gem 'active_model_serializers'
+
 # devise
 gem 'devise'
 
