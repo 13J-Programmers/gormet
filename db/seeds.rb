@@ -6,9 +6,10 @@
 
 Order.create(
   order_at: Time.zone.now,
-  foods_attributes: [{menu_id: @soysource.id, amount: 1, total: 250}])
+  foods_attributes: [{ menu_id: @soysource.id, amount: 1, total: 250 }])
 Order.create(
   order_at: Time.zone.now,
   foods_attributes:[
-    {menu_id: @soysource.id, amount: 1, total: 250},
-    {menu_id: @plane.id, amount: 2, total: 400}])
+    { menu_id: @soysource.id, amount: 1, total: 250 },
+    { menu_id: @plane.id, amount: 2, total: 400 }
+  ])
