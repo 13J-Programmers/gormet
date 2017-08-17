@@ -1,16 +1,22 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  # before_action :authenticate_user!
+  before_action :set_order, only: [:show, :update, :destroy]
 
   def index
-    @order = Order.all
-    render json: @orders, include: include_list
+    @orders = Order.all
+    render json: @orders
+  end
+
+  def show
+    render json: @order
   end
 
   def create
     @order = Order.new(order_params)
-    @order.menus.each do |m|
-      m.stock = m.stock - 1 if m.stock > 0
+    @order.foods.each do |f|
+      menu = Menu.find(f.menu_id)
+      menu.stock = menu.stock - f.amount if menu.stock > 0
+      f.total = menu.price * f.amount
     end
 
     if @order.save
@@ -43,9 +49,10 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_at, :offer_at, food_attributes: [:menu_id])
+      params.require(:order).permit(:offer_at, foods_attributes: [:menu_id, :amount]).merge({order_at: Time.zone.now})
     end
 
     def include_list
-      %w(menus foods)
+      %w(foods foods.menu)
+    end
 end

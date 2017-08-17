@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_menu, only: [:update, :destroy]
+  before_action :set_menu, only: [:show, :update, :destroy]
 
   def index
     @menus = Menu.all
@@ -8,6 +8,7 @@ class MenusController < ApplicationController
   end
 
   def show
+    render json: @menu
   end
 
   def create
