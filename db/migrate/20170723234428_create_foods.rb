@@ -3,6 +3,8 @@ class CreateFoods < ActiveRecord::Migration[5.1]
     create_table :foods do |t|
       t.integer :menu_id, null: false
       t.integer :order_id, null: false
+      t.integer :amount, null: false
+      t.integer :total, null: false
       # t.boolean :with_cheese, default: false, null: false
 
       t.timestamps

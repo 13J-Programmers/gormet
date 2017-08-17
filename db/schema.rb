@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20170723234620) do
   create_table "foods", force: :cascade do |t|
     t.integer "menu_id", null: false
     t.integer "order_id", null: false
-    t.boolean "with_cheese", default: false, null: false
+    t.integer "amount", null: false
+    t.integer "total", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
