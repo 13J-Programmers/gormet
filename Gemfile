@@ -31,8 +31,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'webpacker', github: 'rails/webpacker'
-
 gem 'active_model_serializers'
 
 # devise
