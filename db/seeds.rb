@@ -15,3 +15,16 @@ Order.create(
     { menu_id: @soysource.id, amount: 1, total: 250 },
     { menu_id: @plane.id, amount: 2, total: 400 }
   ])
+Order.create(
+  order_at: Time.zone.now,
+  offer_at: Time.zone.now + 1.hour,
+  foods_attributes:[
+    { menu_id: @curry.id, amount: 1, total: 250 },
+    { menu_id: @plane.id, amount: 1, total: 400 }
+  ])
+Order.create(
+  order_at: Time.zone.now,
+  offer_at: Time.zone.now + 30.minutes,
+  foods_attributes:[
+    { menu_id: @curry.id, amount: 2, total: 400 }
+  ])
