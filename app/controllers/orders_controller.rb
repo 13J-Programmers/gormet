@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.foods.each do |f|
       menu = Menu.find(f.menu_id)
-      menu.stock = menu.stock - f.amount if menu.stock > 0
+      menu.stock -= f.amount if menu.stock > 0
       f.total = menu.price * f.amount
     end
 

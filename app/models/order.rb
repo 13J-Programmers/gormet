@@ -6,4 +6,8 @@ class Order < ApplicationRecord
   def total
     self.foods.sum(:total)
   end
+
+  def total_amount
+    self.foods.sum(:amount)
+  end
 end
