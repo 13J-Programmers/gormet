@@ -35,11 +35,6 @@ gem 'webpacker', github: 'rails/webpacker'
 
 gem 'active_model_serializers'
 
-gem "faker"
-gem "bcrypt"
-# gem "jsonapi-resources"
-gem "knock"
-
 # devise
 gem 'devise'
 
