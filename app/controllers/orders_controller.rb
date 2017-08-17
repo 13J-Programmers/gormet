@@ -1,12 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: [:update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.all
-  end
-
-  def show
+    @order = Order.all
+    render json: @orders
   end
 
   def create
@@ -42,6 +40,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_at, :offer_at, menu_ids: [])
+      params.require(:order).permit(:order_at, :offer_at, menu_attributes: [:menu_id, :with_cheese])
     end
 end
