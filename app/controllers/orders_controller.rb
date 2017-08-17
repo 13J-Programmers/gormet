@@ -4,14 +4,17 @@ class OrdersController < ApplicationController
 
   def index
     @order = Order.all
-    render json: @orders
+    render json: @orders, include: include_list
   end
 
   def create
     @order = Order.new(order_params)
+    @order.menus.each do |m|
+      m.stock = m.stock - 1 if m.stock > 0
+    end
 
     if @order.save
-      render json: @order
+      render json: @order, include: include_list
     else
       render json: { errors: @order.errors.full_messages }
     end
@@ -19,7 +22,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      render json: @order
+      render json: @order, include: include_list
     else
       render json: { errors: @order.errors.full_messages }
     end
@@ -40,6 +43,9 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_at, :offer_at, menu_attributes: [:menu_id, :with_cheese])
+      params.require(:order).permit(:order_at, :offer_at, food_attributes: [:menu_id])
     end
+
+    def include_list
+      %w(menus foods)
 end
