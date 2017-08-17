@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_menu, only: [:show, :edit, :update, :destroy]
+  before_action :set_menu, only: [:update, :destroy]
 
   def index
     @menus = Menu.all
@@ -9,36 +9,30 @@ class MenusController < ApplicationController
   def show
   end
 
-  def new
-    @menu = Menu.new
-  end
-
-  def edit
-  end
-
   def create
     @menu = Menu.new(menu_params)
 
     if @menu.save
-      redirect_to @menu, notice: 'Menu was successfully created.'
+      render json: @menu
     else
-      render :new
+      render json: { errors: @menu.errors.full_messages }
     end
   end
 
   def update
     if @menu.update(menu_params)
-      redirect_to @menu, notice: 'Menu was successfully updated.'
+      render json: @menu
     else
-      render :edit
+      render json: { errors: @menu.errors.full_messages }
     end
   end
 
-
-
   def destroy
-    @menu.destroy
-    redirect_to menus_url, notice: 'Menu was successfully destroyed.'
+    if @menu.destroy
+      head :no_content
+    else
+      render json: { errors: @menu.errors.full_messages }
+    end
   end
 
   private

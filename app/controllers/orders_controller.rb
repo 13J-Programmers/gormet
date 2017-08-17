@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:update, :destroy]
 
   def index
     @orders = Order.all
@@ -9,37 +9,30 @@ class OrdersController < ApplicationController
   def show
   end
 
-  def new
-    @order = Order.new
-  end
-
-  def edit
-  end
-
   def create
     @order = Order.new(order_params)
-    params[:menu_ids].each do |m|
-      @order.foods.build(menu_id: m)
-    end
 
     if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
+      render json: @order
     else
-      render :new
+      render json: { errors: @order.errors.full_messages }
     end
   end
 
   def update
     if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
+      render json: @order
     else
-      render :edit
+      render json: { errors: @order.errors.full_messages }
     end
   end
 
   def destroy
-    @order.destroy
-    redirect_to orders_url, notice: 'Order was successfully destroyed.'
+    if @order.destroy
+      head :no_content
+    else
+      render json: { errors: @order.errors.full_messages }
+    end
   end
 
   private
