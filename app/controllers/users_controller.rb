@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save 
@@ -10,7 +10,7 @@ class UserController < ApplicationController
 
   private
 
-    def order_params
+    def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
 end

@@ -1,5 +1,5 @@
 # users
-User.create(email: 'user1@jaga.jp', password: 'password')
+User.create(email: 'user1@jaga.jp', password: 'password', password_confirmation: 'password')
 
 # order
 @soysource =  Menu.create(name: 'しょうゆバター', price: '250', stock: '100')
